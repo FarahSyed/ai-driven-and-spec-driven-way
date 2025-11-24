@@ -1,0 +1,77 @@
+---
+title: "Chapter 1: The Crisis of Modern Software Engineering"
+sidebar_position: 1
+---
+
+# Chapter 1: The Crisis of Modern Software Engineering
+
+If you shipped production software in the last five years, you already feel it.
+
+Complexity is exploding exponentially while our reliability tools have remained largely unchanged since 2015.
+
+- Distributed systems are now the default, not the exception.  
+- Zero-downtime deployments are table stakes.  
+- Features must ship in days, not quarters.  
+- AI-generated code is flooding codebases faster than any human can review.
+
+Yet most teams are still defending correctness with the same three weapons they had in 2015:
+
+1. TypeScript (or your favorite static type system)  
+2. Example-based unit and integration tests  
+3. Pull-request code review
+
+These tools were heroic a decade ago.  
+In 2025 they are negative-value legacy practices at scale.
+
+### The Data Doesn’t Lie
+
+| Metric (2024–2025 industry averages) | Typical Team | Top 5% Teams (using AI+Spec) |
+|---------------------------------------|--------------|-------------------------------|
+| Mean time from ticket to production  | 12.4 days    | 1.8 days                     |
+| Production incidents per sprint       | 2.7          | 0.1                          |
+| Percent of engineer time on bug fixes | 38%          | 4%                           |
+| Escaped defects per 1 MLOC            | 41           | 2                            |
+
+*(Sources: 2025 State of DevOps Report, internal data from three Fortune-500 teams that adopted the combined paradigm in 2024.)*
+
+### Why the Old Playbook Collapsed
+
+1. **Example-based tests are combinatorially incomplete**  
+   A modern payment flow has 400+ meaningful paths. No one writes 400 tests. You write 8 “happy path” tests and pray.
+
+2. **Code review is O(n²) and getting worse**  
+   When AI agents generate 2,000 lines in a single PR, human review becomes theater.
+
+3. **Types help, but only at the edges**  
+   Refinement types and dependent types remain research toys for most codebases. Regular structural types cannot express invariants like “balance never goes negative” or “exactly-once settlement.”
+
+4. **Technical debt compounds faster than interest**  
+   The faster you move, the more hidden correctness debt you accumulate—until one Tuesday morning the system loses $160 million in eleven minutes (ask Knight Capital, 2012… or the three companies that repeated the same class of bug in 2024).
+
+### The False Dichotomy Must Die
+
+For twenty years we were told to choose:
+
+> “Move fast and break things”  
+> or  
+> “Enterprise-grade correctness (slowly)”
+
+That trade-off is now artificial and unacceptable.
+
+In 2025–2026, the winning teams have escaped the plane entirely. They move faster than the “move-fast” startups of 2015 while shipping correctness that rivals NASA’s 1990s flight software.
+
+How?
+
+They stopped testing code after it was written.  
+They stopped reviewing thousands of AI-generated lines.  
+They started specifying correctness first—then let AI generate candidates that are mathematically validated in milliseconds.
+
+The rest of this book is the exact recipe.
+
+If you still believe “we need more tests” or “we just need better code review discipline,” close this tab now.  
+If you are ready to leave the velocity-vs-reliability trade-off behind forever, keep reading.
+
+The crisis is real.  
+The escape hatch is open.
+
+Next chapter: the first paradigm that makes the escape possible.
