@@ -1,0 +1,65 @@
+---
+title: "2.2 The AI-Driven Workflow"
+sidebar_position: 2
+---
+
+# 2.2 The AI-Driven Workflow  
+From vague idea to production code in 2025
+
+The old linear flow is dead:
+
+> Idea → Write tests → Write code → Manual review → Pray → Deploy → PagerDuty
+
+The new AI-Driven flow is a tight, agentic loop that looks like this in practice (daily reality for multiple teams I work with as of November 2025):
+
+```mermaid
+flowchart TD
+    A[Natural-language ticket<br/>"Support retryable idempotent webhooks"] --> B(Engineer writes 3-sentence description<br/>+ desired public API)
+    B --> C[Launch Agent<br/>(Cursor Agent / Claude Projects / Aider / custom)]
+    C --> D[AI proposes architecture sketch<br/>(mermaid + 3 candidate designs)]
+    D --> E[Human picks one or asks for hybrid]
+    E --> F[AI generates executable spec (optional but recommended)<br/>+ N implementation candidates]
+    F --> G[Spec runner / property tests execute<br/>instant feedback loop]
+    G -->|fail| F
+    G -->|pass| H[AI opens PR with full tests, docs, migration plan]
+    H --> I[Human reviews only the spec + architecture<br/>(~15 mins instead of 2 hours)]
+    I --> J[Merge → Deploy → Sleep peacefully]
+```
+
+### The Concrete 2025 Daily Loop (TypeScript example)  
+Here’s exactly what a senior engineer on a high-performing team does in November 2025:
+
+1. **09:12** Opens a new ticket
+“As a developer, I want our webhook endpoint to be idempotent for 24 h and retry with exponential back-off so we never lose customer events.”  
+2. **09:15** Starts a Cursor Composer session (or Claude Project) with this prompt (saved as template)
+
+```text
+You are an expert full-stack TypeScript engineer.
+Repo context is already loaded.
+Implement idempotent + retryable webhook ingestion with these guarantees:
+- Exactly-once processing per webhook ID for 24 h
+- Exponential back-off + jitter on failures
+- At-least-once delivery to downstream handlers
+Generate:
+1. A short executable Spec-Kit Plus spec capturing the invariants
+2. Three different implementation sketches (Redis, DynamoDB single-table, Postgres advisory locks)
+3. Pick the best one and fully implement it with tests
+```
+
+3. **09:42** AI returns three designs + spec. Engineer picks DynamoDB single-table (cheaper).  
+4. **10:05** AI has already run the spec locally 10 k times → all green. PR is opened automatically with 1 400 lines of production-ready code, migration, OpenAPI changes, monitoring alerts.  
+5. **10:18** Engineer reads the 28-line spec, glances at the architecture diagram, clicks “Approve + Merge”.
+
+Feature ships that afternoon. Zero incidents in production since rollout (now 3 months ago).
+Total human time: ~30 minutes of high-leverage thinking.
+
+### Why This Feels Like Magic (But Isn’t)
+
+- The model already knows your codebase (200 k+ token context).
+- It runs your test/spec suite locally before opening the PR.
+- It self-heals 9/10 failures from counterexamples.
+- You are no longer in the business of typing — you are in the business of directing and verifying.
+
+This workflow is live today at multiple unicorns and two FAANG teams.
+But as you will see in 2.5, pure AI-Driven development without strong specifications is Russian roulette with six bullets loaded.
+Next chapter reveals the tools that actually make this safe at scale.
