@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkai_driven_and_spec_driven_way_book=globalThis.webpackChunkai_driven_and_spec_driven_way_book||[]).push([[8901],{8548:a=>{a.exports=JSON.parse('{"metadata":{"permalink":"/ai-driven-and-spec-driven-way/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":4,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);

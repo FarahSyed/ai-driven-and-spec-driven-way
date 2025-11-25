@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkai_driven_and_spec_driven_way_book=globalThis.webpackChunkai_driven_and_spec_driven_way_book||[]).push([[1903],{1912:a=>{a.exports=JSON.parse('{"blogBasePath":"/ai-driven-and-spec-driven-way/blog","blogTitle":"Blog","authorsListPath":"/ai-driven-and-spec-driven-way/blog/authors"}')}}]);
